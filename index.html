@@ -4,28 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Static page</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4HL1G23HX"></script>
     <script>
+    function randomId() {
+        const min = 10000;
+        const max = 99999;
+        const value = Math.floor(Math.random() * (max - min)) + min;
+
+        return `sp_${value}`;
+    }
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
+    const id = randomId();
     // gtag('config', 'G-H4HL1G23HX', {
     //     user_id: 'ca_2'
     // });
 
     gtag('config', 'G-H4HL1G23HX');
 
-    gtag('set', 'user_id', 'ca_3');
+    gtag('set', 'user_id', id);
 
     gtag('set', 'user_properties', {
-        clever_id: 'ca_3'
+        clever_id: id
     });
     </script>
 </head>
 <body>
-    <h1>hello world</h1>
+    <h1></h1>
+    <input class="js-input" name="client-id" value="" readonly /> 
+
+    <script>
+        const input = document.querySelector("js-input");
+        
+        gtag('get', 'G-H4HL1G23HX', 'client_id', (clientID) => {
+            input.setAttribute("value", clientID);
+        });
+        
+        const h1 = document.getElementsByTagName("h1")[0]
+        h1.textContent = id
+    </script>
 </body>
 </html>
