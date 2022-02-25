@@ -35,13 +35,14 @@
 </head>
 <body>
     <h1></h1>
-    <input class="js-input" name="client-id" value="" readonly /> 
+ 
+    <input type="text" class="js-input" name="client-id" value="" readonly /> 
 
     <script>
-        const input = document.querySelector("js-input");
+        const input = document.querySelector(".js-input");
         
         gtag('get', 'G-H4HL1G23HX', 'client_id', (clientID) => {
-            input.setAttribute("value", clientID);
+            input.value = clientID;
         });
         
         const h1 = document.getElementsByTagName("h1")[0]
